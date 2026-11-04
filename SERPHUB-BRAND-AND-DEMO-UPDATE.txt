@@ -1,0 +1,11 @@
+SerpHub update notes
+
+1. Header/footer use the uploaded SerpHub symbol and exact SerpHub capitalization.
+2. Header, hero, marketplace, and order content use a shared left/right alignment rail.
+3. Demo-only sold records now use realistic common TLDs (.com, .org, .net, .co, .io).
+   They retain the DEMO RECORD tag and an explicit sample-only description so visitors
+   are not misled into believing these are genuine completed sales.
+4. Run `npm run rename:demo-domains` once to rename the 20 already-imported .example
+   demo records in Supabase. This updates those records in place; it does not create
+   duplicate records and does not touch the 19 supplied inventory records.
+5. No schema migration or domain re-import is required.

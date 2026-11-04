@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "import:domains": "tsx prisma/import-domains.ts",
+    "rename:demo-domains": "tsx prisma/rename-demo-domains.ts"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
@@ -22,6 +24,7 @@
     "typescript": "^5.7.2",
     "prisma": "^6.1.0",
     "eslint": "^9.17.0",
-    "eslint-config-next": "^15.1.0"
+    "eslint-config-next": "^15.1.0",
+    "tsx": "^4.19.2"
   }
 }

@@ -1,0 +1,7 @@
+ALTER TABLE "Domain"
+  ALTER COLUMN "priceINR" DROP NOT NULL,
+  ALTER COLUMN "ageYears" TYPE DECIMAL(6,2) USING "ageYears"::DECIMAL(6,2),
+  ADD COLUMN "authorityScore" DECIMAL(6,2),
+  ADD COLUMN "domainAuthority" DECIMAL(6,2),
+  ADD COLUMN "pageAuthority" DECIMAL(6,2),
+  ADD COLUMN "tags" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[];

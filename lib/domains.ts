@@ -1,27 +1,336 @@
 export type DomainListing = {
-  id: string;
-  name: string;
-  priceUSD: number;
-  priceINR: number;
-  category: string;
-  age: number;
-  dr: number;
-  backlinks: number;
-  referringDomains: number;
-  traffic: number;
-  featured?: boolean;
-  tag?: string;
-  description: string;
+  id: string; name: string; priceUSD: number; category: string; age: number;
+  as: number; da: number; pa: number; dr: number; backlinks: number;
+  tag?: string; tags: string[]; description: string;
 };
 
-// Demo inventory only. Replace with verified, owned/authorized listings from the admin database.
+// Inventory prepared from the supplied 19-domain sheet. Verify ownership and availability before publishing.
 export const domains: DomainListing[] = [
-  { id: "1", name: "northstaranalytics.com", priceUSD: 850, priceINR: 70900, category: "Technology", age: 11, dr: 32, backlinks: 4200, referringDomains: 186, traffic: 740, featured: true, tag: "Featured", description: "A confident name for analytics, intelligence and data-led products." },
-  { id: "2", name: "brightpathfinance.com", priceUSD: 620, priceINR: 51700, category: "Finance", age: 8, dr: 27, backlinks: 2100, referringDomains: 124, traffic: 510, featured: true, tag: "Curated", description: "A clear, trustworthy brand direction for financial services." },
-  { id: "3", name: "urbanleafstudio.com", priceUSD: 390, priceINR: 32500, category: "Lifestyle", age: 6, dr: 19, backlinks: 980, referringDomains: 72, traffic: 260, description: "A versatile name for a design, interiors or lifestyle brand." },
-  { id: "4", name: "learncraftacademy.org", priceUSD: 450, priceINR: 37500, category: "Education", age: 10, dr: 24, backlinks: 1750, referringDomains: 98, traffic: 430, description: "A memorable education-focused name for learning platforms." },
-  { id: "5", name: "wellnessfoundry.com", priceUSD: 1100, priceINR: 91800, category: "Health", age: 13, dr: 36, backlinks: 5300, referringDomains: 240, traffic: 920, featured: true, tag: "Premium", description: "A polished brand asset for wellness and health businesses." },
-  { id: "6", name: "pixelharbor.io", priceUSD: 550, priceINR: 45900, category: "Technology", age: 5, dr: 21, backlinks: 1250, referringDomains: 83, traffic: 315, description: "A concise technology name suited to software and creative tools." },
+  {
+    "id": "1",
+    "name": "hardwoodfund.org",
+    "priceUSD": 450.0,
+    "category": "Environment",
+    "age": 7.08,
+    "as": 2.0,
+    "da": 16.0,
+    "pa": 18.0,
+    "dr": 27.0,
+    "backlinks": 1231,
+    "tag": "NameRank",
+    "tags": [
+      "NameRank",
+      "Domain Rank",
+      "Subfolder Indexed High DR Backlink"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "2",
+    "name": "oxford-jdg.net",
+    "priceUSD": 300.0,
+    "category": "Education",
+    "age": 16.08,
+    "as": 9.0,
+    "da": 17.0,
+    "pa": 21.0,
+    "dr": 8.0,
+    "backlinks": 1641,
+    "tag": "Subfolder Indexed High DR Backlink",
+    "tags": [
+      "Subfolder Indexed High DR Backlink"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "3",
+    "name": "vesavaltonen.com",
+    "priceUSD": 700.0,
+    "category": "Professional Services",
+    "age": 16.08,
+    "as": 3.0,
+    "da": 21.0,
+    "pa": 30.0,
+    "dr": 11.0,
+    "backlinks": 1440,
+    "tag": "Domain Rank",
+    "tags": [
+      "Domain Rank",
+      "Subfolder Indexed High DR Backlink"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "4",
+    "name": "coolcornerbistro.com",
+    "priceUSD": 200.0,
+    "category": "Restaurant",
+    "age": 11.08,
+    "as": 4.0,
+    "da": 15.0,
+    "pa": 22.0,
+    "dr": 1.8,
+    "backlinks": 1034,
+    "tag": null,
+    "tags": [],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "5",
+    "name": "newmultitude.org",
+    "priceUSD": 350.0,
+    "category": "Non-Profit",
+    "age": 6.08,
+    "as": 7.0,
+    "da": 15.0,
+    "pa": 26.0,
+    "dr": 2.8,
+    "backlinks": 705,
+    "tag": "NameRank",
+    "tags": [
+      "NameRank",
+      "Domain Rank",
+      "Subfolder Indexed High DR Backlink"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "6",
+    "name": "sequoyahridingstables.com",
+    "priceUSD": 150.0,
+    "category": "Sports & Recreation",
+    "age": 24.08,
+    "as": 6.0,
+    "da": 16.0,
+    "pa": 25.0,
+    "dr": 1.3,
+    "backlinks": 1087,
+    "tag": null,
+    "tags": [],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "7",
+    "name": "typhooteashop.com",
+    "priceUSD": 150.0,
+    "category": "Restaurant",
+    "age": 11.08,
+    "as": 4.0,
+    "da": 18.0,
+    "pa": 23.0,
+    "dr": 2.2,
+    "backlinks": 995,
+    "tag": "NameRank",
+    "tags": [
+      "NameRank",
+      "Domain Rank"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "8",
+    "name": "dms-2.com",
+    "priceUSD": 350.0,
+    "category": "Technology",
+    "age": 12.08,
+    "as": 18.0,
+    "da": 14.0,
+    "pa": 24.0,
+    "dr": 15.0,
+    "backlinks": 1280,
+    "tag": "Domain Rank",
+    "tags": [
+      "Domain Rank"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "9",
+    "name": "universalpowermartialarts.com",
+    "priceUSD": 150.0,
+    "category": "Sports & Recreation",
+    "age": 14.08,
+    "as": 9.0,
+    "da": 5.0,
+    "pa": 18.0,
+    "dr": 0.0,
+    "backlinks": 1733,
+    "tag": "NameRank",
+    "tags": [
+      "NameRank",
+      "Domain Rank"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "10",
+    "name": "comercializadora-ase.com",
+    "priceUSD": 150.0,
+    "category": "Business & Trading",
+    "age": 10.08,
+    "as": 6.0,
+    "da": 8.0,
+    "pa": 13.0,
+    "dr": 0.0,
+    "backlinks": 1053,
+    "tag": "NameRank",
+    "tags": [
+      "NameRank",
+      "Domain Rank"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "11",
+    "name": "forcebloomington.com",
+    "priceUSD": 200.0,
+    "category": "Fitness",
+    "age": 12.08,
+    "as": 10.0,
+    "da": 21.0,
+    "pa": 32.0,
+    "dr": 6.0,
+    "backlinks": 1418,
+    "tag": "Domain Rank",
+    "tags": [
+      "Domain Rank"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "12",
+    "name": "clubhousevirtualgolf.com",
+    "priceUSD": 200.0,
+    "category": "Sports & Recreation",
+    "age": 11.08,
+    "as": 9.0,
+    "da": 8.0,
+    "pa": 20.0,
+    "dr": 1.5,
+    "backlinks": 1055,
+    "tag": null,
+    "tags": [],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "13",
+    "name": "nossiadriana.com",
+    "priceUSD": 150.0,
+    "category": "Professional Services",
+    "age": 10.08,
+    "as": 2.0,
+    "da": 11.0,
+    "pa": 23.0,
+    "dr": 1.8,
+    "backlinks": 1053,
+    "tag": null,
+    "tags": [],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "14",
+    "name": "estafasttrack.com",
+    "priceUSD": 150.0,
+    "category": "Transportation",
+    "age": 10.08,
+    "as": 2.0,
+    "da": 14.0,
+    "pa": 29.0,
+    "dr": 0.0,
+    "backlinks": 1140,
+    "tag": null,
+    "tags": [],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "15",
+    "name": "fairheadkenya.com",
+    "priceUSD": 200.0,
+    "category": "Business & Trading",
+    "age": 20.08,
+    "as": 2.0,
+    "da": 6.0,
+    "pa": 12.0,
+    "dr": 0.0,
+    "backlinks": 2475,
+    "tag": "NameRank",
+    "tags": [
+      "NameRank",
+      "Domain Rank"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "16",
+    "name": "royaleassagao.com",
+    "priceUSD": 400.0,
+    "category": "Hotel & Hospitality",
+    "age": 16.08,
+    "as": 18.0,
+    "da": 18.0,
+    "pa": 31.0,
+    "dr": 0.0,
+    "backlinks": 1578,
+    "tag": "NameRank",
+    "tags": [
+      "NameRank",
+      "Domain Rank",
+      "Subfolder Indexed High DR Backlink"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "17",
+    "name": "carlowcookery.com",
+    "priceUSD": 200.0,
+    "category": "Education",
+    "age": 5.08,
+    "as": 2.0,
+    "da": 26.0,
+    "pa": 27.0,
+    "dr": 0.6,
+    "backlinks": 1072,
+    "tag": "Domain Rank",
+    "tags": [
+      "Domain Rank"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "18",
+    "name": "charlesaperezart.com",
+    "priceUSD": 150.0,
+    "category": "Arts & Entertainment",
+    "age": 4.08,
+    "as": 2.0,
+    "da": 1.0,
+    "pa": 8.0,
+    "dr": 0.0,
+    "backlinks": 1001,
+    "tag": "Domain Rank",
+    "tags": [
+      "Domain Rank"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  },
+  {
+    "id": "19",
+    "name": "salonh2ocharlotte.com",
+    "priceUSD": 150.0,
+    "category": "Beauty & Personal Care",
+    "age": 17.08,
+    "as": 2.0,
+    "da": 12.0,
+    "pa": 25.0,
+    "dr": 0.0,
+    "backlinks": 2229,
+    "tag": "NameRank",
+    "tags": [
+      "NameRank",
+      "Domain Rank"
+    ],
+    "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
+  }
 ];
 
-export const categories = ["All domains", "Technology", "Finance", "Lifestyle", "Education", "Health"];
+export const categories = ["All domains", ...Array.from(new Set(domains.map((domain) => domain.category)))];
