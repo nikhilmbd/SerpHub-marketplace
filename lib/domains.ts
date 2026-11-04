@@ -105,7 +105,7 @@ export const domains: DomainListing[] = [
     "pa": 25.0,
     "dr": 1.3,
     "backlinks": 1087,
-    "tag": null,
+    "tag": undefined,
     "tags": [],
     "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
   },
@@ -208,7 +208,7 @@ export const domains: DomainListing[] = [
     "pa": 20.0,
     "dr": 1.5,
     "backlinks": 1055,
-    "tag": null,
+    "tag": undefined,
     "tags": [],
     "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
   },
@@ -223,7 +223,7 @@ export const domains: DomainListing[] = [
     "pa": 23.0,
     "dr": 1.8,
     "backlinks": 1053,
-    "tag": null,
+    "tag": undefined,
     "tags": [],
     "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
   },
@@ -238,7 +238,7 @@ export const domains: DomainListing[] = [
     "pa": 29.0,
     "dr": 0.0,
     "backlinks": 1140,
-    "tag": null,
+    "tag": undefined,
     "tags": [],
     "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
   },
