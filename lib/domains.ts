@@ -71,7 +71,7 @@ export const domains: DomainListing[] = [
     "pa": 22.0,
     "dr": 1.8,
     "backlinks": 1034,
-    "tag": null,
+    "tag": undefined,
     "tags": [],
     "description": "SEO metrics supplied with this listing; figures may change and should be independently verified."
   },
