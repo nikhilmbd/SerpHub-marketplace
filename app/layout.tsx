@@ -3,6 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://serphub.info"),
+  icons: {
+    icon: [{ url: "/serphub-favicon-v1.png", type: "image/png", sizes: "48x48" }],
+    shortcut: "/serphub-favicon-v1.png",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   title: {
     default: "SerpHub — Premium Domains for Your Next Move",
     template: "%s | SerpHub",
