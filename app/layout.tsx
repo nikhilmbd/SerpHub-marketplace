@@ -9,6 +9,13 @@ export const metadata: Metadata = {
   },
   description:
     "Discover curated domains for businesses, brands and SEO projects. Explore domain metrics, compare listings and submit purchase requests with SerpHub.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "64x64" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     title: "SerpHub — Premium Domains for Your Next Move",
     description: "A curated marketplace for valuable digital assets.",
