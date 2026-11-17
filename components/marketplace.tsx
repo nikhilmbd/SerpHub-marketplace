@@ -26,6 +26,7 @@ export default function Marketplace({ domains }: { domains: PublicDomain[] }) {
   const categories = ["All domains", ...Array.from(new Set(domains.map((domain) => domain.category))).sort()];
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All domains");
+  const [showAvailableOnly, setShowAvailableOnly] = useState(false);
   const [sort, setSort] = useState("featured");
   const [cart, setCart] = useState<string[]>([]);
   const [saved, setSaved] = useState<string[]>([]);
@@ -39,7 +40,8 @@ export default function Marketplace({ domains }: { domains: PublicDomain[] }) {
     const result = domains.filter((domain) => {
       const matchesQuery = domain.name.toLowerCase().includes(query.toLowerCase());
       const matchesCategory = category === "All domains" || domain.category === category;
-      return matchesQuery && matchesCategory;
+      const matchesAvailability = !showAvailableOnly || domain.status === "AVAILABLE";
+      return matchesQuery && matchesCategory && matchesAvailability;
     });
     const isHot = (domain: PublicDomain) =>
       domain.priceUSD >= 500 || domain.tags.some((tag) => /subfolder.*indexed|indexed.*subfolder/i.test(tag));
@@ -48,7 +50,7 @@ export default function Marketplace({ domains }: { domains: PublicDomain[] }) {
     if (sort === "price-high") result.sort((a, b) => Number(isHot(b)) - Number(isHot(a)) || b.priceUSD - a.priceUSD);
     if (sort === "dr") result.sort((a, b) => Number(isHot(b)) - Number(isHot(a)) || b.dr - a.dr);
     return result;
-  }, [query, category, sort]);
+  }, [domains, query, category, sort, showAvailableOnly]);
 
   const selected = domains.filter((domain) => domain.status === "AVAILABLE" && cart.includes(domain.id));
   const total = selected.reduce((sum, domain) => sum + domain.priceUSD, 0);
@@ -121,6 +123,27 @@ export default function Marketplace({ domains }: { domains: PublicDomain[] }) {
 
       <section className="market-section section-wrap" id="domains">
         <div className="section-heading"><div><div className="eyebrow">HANDPICKED DOMAINS</div><h2>Explore quality <span>aged domains.</span></h2><p>Compare domain age, authority, backlink metrics and highlighted SEO tags. Sold domains remain visible as masked references.</p></div><div className="inventory-count"><b>{filtered.length.toString().padStart(2, "0")}</b><span>listings shown</span></div></div>
+        <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "14px", marginBottom: "18px" ,marginTop:"18px"}}>
+          <button
+            type="button"
+            onClick={() => setShowAvailableOnly((current) => !current)}
+            aria-pressed={showAvailableOnly}
+            style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "12px",
+              minHeight: "52px", padding: "0 22px", border: "0", borderRadius: "10px",
+              background: showAvailableOnly ? "#173fc5" : "#315cf5", color: "#ffffff",
+              fontSize: "16px", fontWeight: 700, letterSpacing: "0.1px", cursor: "pointer",
+              boxShadow: "0 5px 14px rgba(49, 92, 245, 0.28)",
+              transition: "background 160ms ease, transform 160ms ease, box-shadow 160ms ease"
+            }}
+          >
+            {showAvailableOnly ? "Show All Domains" : "Show Available"}
+            <ArrowRight size={19} strokeWidth={2.4} />
+          </button>
+          <span style={{ color: "#526078", fontSize: "13px", fontWeight: 600 }}>
+            {showAvailableOnly ? "Showing available domains only" : "Browse domains currently available to buy"}
+          </span>
+        </div>
         <div className="market-toolbar">
           <div className="category-tabs">{categories.map((item) => <button key={item} className={category === item ? "category-tab active" : "category-tab"} onClick={() => setCategory(item)}>{item}</button>)}</div>
           <label className="sort-select"><SlidersHorizontal size={15}/><select value={sort} onChange={(e) => setSort(e.target.value)}><option value="featured">Featured first</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="dr">Highest DR</option></select><ChevronDown size={13}/></label>
@@ -134,7 +157,7 @@ export default function Marketplace({ domains }: { domains: PublicDomain[] }) {
             const isReserved = domain.status === "RESERVED";
             const isHot = domain.priceUSD >= 500 || visibleTags.some((tag) => /subfolder.*indexed|indexed.*subfolder/i.test(tag));
             return <article className={`domain-card ${isSold ? "sold-domain-card" : ""}`} key={domain.id}>
-              <div className="domain-card-head"><div className="domain-card-badges"><span className={`domain-category ${categoryColor(domain.category)}`}>{domain.category}</span>{isHot && <span className="hot-domain-badge">🔥 Hot</span>}{isSold && <span className="sold-domain-badge">Sold</span>}{isReserved && <span className="reserved-domain-badge">Reserved</span>}</div>{!isSold && <button className={isSaved ? "save-button saved" : "save-button"} onClick={() => setSaved((items) => isSaved ? items.filter((id) => id !== domain.id) : [...items, domain.id])} aria-label={isSaved ? "Remove from saved" : "Save domain"}><Heart size={17} fill={isSaved ? "currentColor" : "none"}/></button>}</div>
+              <div className="domain-card-head"><div className="domain-card-badges"><span className={`domain-category ${categoryColor(domain.category)}`}>{domain.category}</span>{isHot && <span className="hot-domain-badge">🔥 Hot</span>}{domain.status === "AVAILABLE" && <span style={{ display: "inline-flex", alignItems: "center", padding: "5px 10px", borderRadius: "999px", background: "#e7f8ee", color: "#168348", border: "1px solid #b9ebcc", fontSize: "11px", fontWeight: 800, letterSpacing: "0.45px", lineHeight: 1 }}>AVAILABLE</span>}{isSold && <span className="sold-domain-badge">Sold</span>}{isReserved && <span className="reserved-domain-badge">Reserved</span>}</div>{!isSold && <button className={isSaved ? "save-button saved" : "save-button"} onClick={() => setSaved((items) => isSaved ? items.filter((id) => id !== domain.id) : [...items, domain.id])} aria-label={isSaved ? "Remove from saved" : "Save domain"}><Heart size={17} fill={isSaved ? "currentColor" : "none"}/></button>}</div>
               <div className={isSold ? "domain-name sold-domain-name" : "domain-name"}>{isSold ? <><span className="sold-name-visible">{domain.name.split(".")[0].slice(0, 3)}</span><span className="sold-name-blur" aria-hidden="true">{"•".repeat(Math.max(6, domain.name.split(".")[0].length - 3))}</span>{domain.name.slice(domain.name.indexOf("."))}</> : domain.name}</div>
               <p className="domain-description">{domain.description}</p>
               <div className="metric-row"><div><b>{domain.as}</b><span>AS</span></div><div><b>{domain.da}</b><span>DA</span></div><div><b>{domain.pa}</b><span>PA</span></div><div><b>{domain.dr}</b><span>DR</span></div></div><div className="listing-footnote">Age: {domain.age.toFixed(1)} years · Backlinks: {domain.backlinks.toLocaleString()}</div>
